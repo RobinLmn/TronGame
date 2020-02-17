@@ -8,7 +8,9 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 dir;
     private Vector2 pos;
+
     [SerializeField] private GameObject trackPrefab;
+    [SerializeField] private int playerID;
 
     List<Transform> track = new List<Transform>();
     
@@ -22,7 +24,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        inputControls();
+        if (playerID == 1){
+            inputControlsPlayer1();
+        }
+        else if (playerID == 2){
+            inputControlsPlayer2();
+        }
     }
 
     void Move()
@@ -48,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    void inputControls(){
+    void inputControlsPlayer1(){
         // Check Input, and prevent player for going back into previous direction
         if (Input.GetKey(KeyCode.RightArrow) && dir != (-Vector2.right) )
             dir = Vector2.right;
@@ -57,6 +64,18 @@ public class PlayerMovement : MonoBehaviour
         else if (Input.GetKey(KeyCode.LeftArrow) && dir != (Vector2.right))
             dir = -Vector2.right;
         else if (Input.GetKey(KeyCode.UpArrow) && dir != (-Vector2.up))
+            dir = Vector2.up;
+    }
+
+    void inputControlsPlayer2(){
+        // Check Input, and prevent player for going back into previous direction
+        if (Input.GetKey(KeyCode.D) && dir != (-Vector2.right) )
+            dir = Vector2.right;
+        else if (Input.GetKey(KeyCode.S) && dir != (Vector2.up) )
+            dir = -Vector2.up; 
+        else if (Input.GetKey(KeyCode.A) && dir != (Vector2.right))
+            dir = -Vector2.right;
+        else if (Input.GetKey(KeyCode.W) && dir != (-Vector2.up))
             dir = Vector2.up;
     }
 
