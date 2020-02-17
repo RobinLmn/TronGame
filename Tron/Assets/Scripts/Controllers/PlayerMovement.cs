@@ -11,15 +11,16 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private GameObject trackPrefab;
     [SerializeField] private int playerID;
+    [SerializeField] private Vector2 startPos = Vector2.up;
 
     List<Transform> track = new List<Transform>();
     
  
     void Start()
     {
-        dir = Vector2.up;
+        dir = startPos;
         // Call Move() every 300ms
-        InvokeRepeating("Move", 0.1f, 0.1f);
+        InvokeRepeating("Move", 0.2f, 0.2f);
     }
 
     void Update()

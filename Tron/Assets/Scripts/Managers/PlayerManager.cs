@@ -8,7 +8,13 @@ public class PlayerManager : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Track"))
         {
-            Debug.Log("You Lost");
+            Respawn();
         }
+    }
+
+    void Respawn()
+    {
+        Debug.Log("You Lost");
+        // Reload App
     }
 }
