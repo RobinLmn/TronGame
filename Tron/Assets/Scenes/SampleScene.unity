@@ -400,6 +400,7 @@ GameObject:
   - component: {fileID: 799437859}
   - component: {fileID: 799437860}
   - component: {fileID: 799437861}
+  - component: {fileID: 799437862}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Untagged
@@ -493,11 +494,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 109240ec607f34e3fa6f0cde2227506a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackPrefab: {fileID: 5004598133643606122, guid: e97da3446f57b4d499c91a017567efe9,
-    type: 3}
-  playerID: 1
   startPos: {x: 0, y: -1}
-  trackFolder: {fileID: 1748526008}
+  playerID: 1
 --- !u!114 &799437860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -526,6 +524,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &799437862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799437854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56b630369a7a0492f86562c5c3cc1587, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackPrefab: {fileID: 5004598133643606122, guid: e97da3446f57b4d499c91a017567efe9,
+    type: 3}
+  trackFolder: {fileID: 1748526008}
 --- !u!1 &805106029
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,6 +694,7 @@ GameObject:
   - component: {fileID: 1408223431}
   - component: {fileID: 1408223430}
   - component: {fileID: 1408223429}
+  - component: {fileID: 1408223436}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Untagged
@@ -728,11 +742,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 109240ec607f34e3fa6f0cde2227506a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackPrefab: {fileID: 5004598133643606122, guid: 3ac8713889d554272b99479a09dcdd57,
-    type: 3}
-  playerID: 2
   startPos: {x: 0, y: 1}
-  trackFolder: {fileID: 1748526008}
+  playerID: 2
 --- !u!65 &1408223432
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -807,6 +818,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1408223436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408223428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56b630369a7a0492f86562c5c3cc1587, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackPrefab: {fileID: 5004598133643606122, guid: 3ac8713889d554272b99479a09dcdd57,
+    type: 3}
+  trackFolder: {fileID: 1748526008}
 --- !u!1 &1748526007
 GameObject:
   m_ObjectHideFlags: 0
