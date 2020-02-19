@@ -10,13 +10,47 @@ public class TrackManager : MonoBehaviour
 
     [SerializeField] private GameObject trackPrefab;
     [SerializeField] private Transform trackFolder;
+    [SerializeField] private float trackMoveRate = 0.2f;
+    [SerializeField] private float trackIncreaseRate = 0.2f;
+    [SerializeField] private int playerID;
+
 
     List<Transform> track = new List<Transform>();
+
+    private bool isTrackEnable = true;
+    private KeyCode trackKey;
 
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("UpdateTail", 0.2f, 0.2f);
+        InvokeRepeating("UpdateTail", trackMoveRate, trackMoveRate);
+        InvokeRepeating("IncreaseTail", trackIncreaseRate, trackIncreaseRate);
+
+        if (playerID == 1){
+            trackKey = KeyCode.Q;
+        }
+        else if (playerID == 2){
+            trackKey = KeyCode.RightShift;
+        }
+    }
+
+    void Update()
+    {
+        if (Input.GetKey(trackKey))
+        {
+            if (isTrackEnable)
+            {
+                CancelInvoke("UpdateTail");
+                CancelInvoke("InreaseTail");
+                isTrackEnable = false;
+            }
+            else
+            {
+                InvokeRepeating("UpdateTail", trackMoveRate, trackMoveRate);
+                InvokeRepeating("IncreaseTail", trackIncreaseRate, trackIncreaseRate);
+                isTrackEnable = true;
+            }
+        }
     }
 
     void UpdateTail(){

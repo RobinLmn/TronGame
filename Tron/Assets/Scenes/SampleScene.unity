@@ -539,6 +539,9 @@ MonoBehaviour:
   trackPrefab: {fileID: 5004598133643606122, guid: e97da3446f57b4d499c91a017567efe9,
     type: 3}
   trackFolder: {fileID: 1748526008}
+  trackMoveRate: 0.2
+  trackIncreaseRate: 0.2
+  playerID: 1
 --- !u!1 &805106029
 GameObject:
   m_ObjectHideFlags: 0
@@ -833,6 +836,9 @@ MonoBehaviour:
   trackPrefab: {fileID: 5004598133643606122, guid: 3ac8713889d554272b99479a09dcdd57,
     type: 3}
   trackFolder: {fileID: 1748526008}
+  trackMoveRate: 0.2
+  trackIncreaseRate: 0.2
+  playerID: 2
 --- !u!1 &1748526007
 GameObject:
   m_ObjectHideFlags: 0
