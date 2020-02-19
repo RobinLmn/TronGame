@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject trackPrefab;
     [SerializeField] private int playerID;
     [SerializeField] private Vector2 startPos = Vector2.up;
+    [SerializeField] private Transform trackFolder;
 
     List<Transform> track = new List<Transform>();
     
@@ -83,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
     void IncreaseTail(){
         // Load Prefab into the world
         GameObject trackPart = (GameObject)Instantiate(trackPrefab, pos, Quaternion.identity);
+        trackPart.transform.SetParent(trackFolder);
         // Keep track of it in our tail list
         track.Insert(0, trackPart.transform);
     }
