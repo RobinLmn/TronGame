@@ -26,22 +26,28 @@ public class TrackManager : MonoBehaviour
         InvokeRepeating("UpdateTail", trackMoveRate, trackMoveRate);
         InvokeRepeating("IncreaseTail", trackIncreaseRate, trackIncreaseRate);
 
-        if (playerID == 1){
+        if (playerID == 2){
             trackKey = KeyCode.Q;
         }
-        else if (playerID == 2){
+        else if (playerID == 1){
             trackKey = KeyCode.RightShift;
         }
     }
 
     void Update()
     {
-        if (Input.GetKey(trackKey))
+        if (Input.GetKeyDown(trackKey))
         {
             if (isTrackEnable)
             {
+                // Stop updating the tracks
                 CancelInvoke("UpdateTail");
                 CancelInvoke("InreaseTail");
+
+                // clear the track list to not update the unconnected tracks.
+                track.Clear();
+
+                // keep track of the state of the track.
                 isTrackEnable = false;
             }
             else

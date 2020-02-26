@@ -2,17 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Collectables : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+public class Collectables : AbstractInteractable
+{   
+
+    [SerializeField] private PlayerManager playerMan;
+     
+    void ActiveItem(){
+        playerMan.increaseScore(100);
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter(Collider other)
     {
-        
+        if (other.gameObject.CompareTag("Collectable")){
+
+            Debug.Log("Interacted with collectable");
+            ActiveItem();
+            other.gameObject.SetActive(false);
+            isInstantiate = false;
+        }
     }
+
+    public override void Spawn(){
+        base.Spawn();
+    }
+
+    void Start(){
+        InvokeRepeating("Spawn", 4f, 4f);
+    }
+
 }
