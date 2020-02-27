@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Vector2 startPos = Vector2.up;
     [SerializeField] private int playerID;
-    [SerializeField] private float moveRate = 0.2f;
+    [SerializeField] private float moveRate = 0.1f;
 
     void Start()
     {
@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
     public void resetSpeed()
     {
         CancelInvoke("Move");
-        moveRate = 0.2f;
+        moveRate = 0.1f;
         InvokeRepeating("Move", moveRate, moveRate);
     }
 }

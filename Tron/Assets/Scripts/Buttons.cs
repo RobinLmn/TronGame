@@ -5,8 +5,5 @@ using UnityEngine.SceneManagement;
 
 public class Buttons : MonoBehaviour
 {
-    public void Replay()
-    {
-        SceneManager.LoadScene(0);
-    }
+    
 }

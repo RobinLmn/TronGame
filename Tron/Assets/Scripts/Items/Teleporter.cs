@@ -42,7 +42,7 @@ public class Teleporter : AbstractInteractable
     }
 
     void Start(){
-        InvokeRepeating("Spawn", 2f, 2f);
+        InvokeRepeating("Spawn", 8f, 8f);
     }
 
     void PickUp(){

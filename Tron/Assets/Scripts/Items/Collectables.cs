@@ -8,7 +8,7 @@ public class Collectables : AbstractInteractable
     [SerializeField] private PlayerManager playerMan;
      
     void ActiveItem(){
-        playerMan.increaseScore(100);
+        playerMan.score += 10000;
     }
 
     void OnTriggerEnter(Collider other)

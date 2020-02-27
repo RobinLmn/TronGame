@@ -10,8 +10,8 @@ public class TrackManager : MonoBehaviour
 
     [SerializeField] private GameObject trackPrefab;
     [SerializeField] private Transform trackFolder;
-    [SerializeField] private float trackMoveRate = 0.2f;
-    [SerializeField] private float trackIncreaseRate = 0.2f;
+    [SerializeField] private float trackMoveRate = 0.1f;
+    [SerializeField] private float trackIncreaseRate = 0.1f;
     [SerializeField] private int playerID;
 
 
@@ -21,6 +21,7 @@ public class TrackManager : MonoBehaviour
     private KeyCode trackKey;
 
     [SerializeField] private PlayerMovement playerMov;
+    [SerializeField] private PlayerManager playerMan;
 
     // Start is called before the first frame update
     void Start()
@@ -38,29 +39,35 @@ public class TrackManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(trackKey))
+        if (Input.GetKey(trackKey) && isTrackEnable)
         {
-            if (isTrackEnable)
-            {
-                // Stop updating the tracks
-                CancelInvoke("UpdateTail");
-                CancelInvoke("InreaseTail");
+            // Stop updating the tracks
+            CancelInvoke("UpdateTail");
+            CancelInvoke("InreaseTail");
 
-                // clear the track list to not update the unconnected tracks.
-                track.Clear();
+            // clear the track list to not update the unconnected tracks.
+            track.Clear();
 
-                playerMov.doubleSpeed();
+            playerMov.doubleSpeed();
+            
+            // keep track of the state of the track.
+            isTrackEnable = false;
 
-                // keep track of the state of the track.
-                isTrackEnable = false;
-            }
-        }
+        } 
         else if (!Input.GetKey(trackKey) && !isTrackEnable)
         {
             InvokeRepeating("UpdateTail", trackMoveRate, trackMoveRate);
             InvokeRepeating("IncreaseTail", trackIncreaseRate, trackIncreaseRate);
             playerMov.resetSpeed();
             isTrackEnable = true;
+        }
+    }
+
+    void LateUpdate()
+    {
+        if (isTrackEnable)
+        {
+            playerMan.score +=2;
         }
     }
 
@@ -80,8 +87,6 @@ public class TrackManager : MonoBehaviour
             // Start to detect collision after 2 tracks
             track[1].gameObject.tag = "Track";
         }
-
-        IncreaseTail();
 
     }
 

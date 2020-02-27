@@ -2,15 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
 
     [SerializeField] private int playerID;
-    [SerializeField] private int score = 0;
+    [SerializeField] public int score = 1;
     [SerializeField] private Text winningText;
     [SerializeField] private Button replayButton;
+    [SerializeField] private Text scoreText;
+    static private bool endGame = false;
 
+    void Update()
+    {
+        if (!endGame)
+        {
+            scoreText.text = score.ToString();
+        }
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -34,9 +44,19 @@ public class PlayerManager : MonoBehaviour
         
         replayButton.gameObject.SetActive(true);
         Time.timeScale = 0f;
+        endGame = true;
     }
 
     public void increaseScore(int toAdd){
         this.score += toAdd;
+    }
+
+    public void Replay()
+    {
+        CancelInvoke();
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1f;
+        endGame = false;
+        score = 0;
     }
 }
