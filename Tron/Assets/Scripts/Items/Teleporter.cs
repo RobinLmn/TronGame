@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Teleporter : AbstractInteractable
 {
-    private GameObject teleporter1;
-    private GameObject teleporter2;
+    static private GameObject teleporter1;
+    static private GameObject teleporter2;
     
     void OnTriggerEnter(Collider other){
         
@@ -42,7 +42,7 @@ public class Teleporter : AbstractInteractable
     }
 
     void Start(){
-        InvokeRepeating("Spawn", 8f, 8f);
+        InvokeRepeating("Spawn", 2f, 2f);
     }
 
     void PickUp(){

@@ -20,6 +20,8 @@ public class TrackManager : MonoBehaviour
     private bool isTrackEnable = true;
     private KeyCode trackKey;
 
+    [SerializeField] private PlayerMovement playerMov;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +38,7 @@ public class TrackManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(trackKey))
+        if (Input.GetKey(trackKey))
         {
             if (isTrackEnable)
             {
@@ -47,15 +49,18 @@ public class TrackManager : MonoBehaviour
                 // clear the track list to not update the unconnected tracks.
                 track.Clear();
 
+                playerMov.doubleSpeed();
+
                 // keep track of the state of the track.
                 isTrackEnable = false;
             }
-            else
-            {
-                InvokeRepeating("UpdateTail", trackMoveRate, trackMoveRate);
-                InvokeRepeating("IncreaseTail", trackIncreaseRate, trackIncreaseRate);
-                isTrackEnable = true;
-            }
+        }
+        else if (!Input.GetKey(trackKey) && !isTrackEnable)
+        {
+            InvokeRepeating("UpdateTail", trackMoveRate, trackMoveRate);
+            InvokeRepeating("IncreaseTail", trackIncreaseRate, trackIncreaseRate);
+            playerMov.resetSpeed();
+            isTrackEnable = true;
         }
     }
 
