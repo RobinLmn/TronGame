@@ -42,6 +42,7 @@ public class Teleporter : AbstractInteractable
     }
 
     void Start(){
+        isInstantiate = false;
         InvokeRepeating("Spawn", 8f, 8f);
     }
 

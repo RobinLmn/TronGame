@@ -12,9 +12,19 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private Text winningText;
     [SerializeField] private Button replayButton;
     [SerializeField] private Text scoreText;
-    static private bool endGame = false;
+    [SerializeField] private GameObject menu;
 
-    void Update()
+    static private bool endGame = false;
+    private int toAdd;
+    private bool addTrack = true;
+    private bool addBon = false;
+
+    void Start()
+    {
+        InvokeRepeating("Score", 0.1f, 0.1f);
+    }
+
+    void FixedUpdate()
     {
         if (!endGame)
         {
@@ -54,9 +64,60 @@ public class PlayerManager : MonoBehaviour
     public void Replay()
     {
         CancelInvoke();
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
         Time.timeScale = 1f;
         endGame = false;
         score = 0;
+        menu.SetActive(false);
+    }
+
+    public void AddTrack()
+    {
+        addTrack = true;
+    }
+
+    public void AddBonus()
+    {
+        addBon = true;
+    }
+
+    public void DeTrack()
+    {
+        addTrack = false;
+    }
+
+    public void Score()
+    {
+        if (addTrack){
+
+            if (addBon)
+            {
+                score *= 2;
+                addBon = false;
+            }
+            else
+            {
+                score += 1;
+            }
+        }
+        else if (!addTrack && addBon)
+        {
+            score *=2 ;
+        }
+    }
+
+    public void Continue(){
+        Time.timeScale = 1f;
+        menu.SetActive(false);
+    }
+
+    public void Menu()
+    {
+        SceneManager.LoadScene(0);
+        CancelInvoke();
+        Time.timeScale = 1f;
+        endGame = false;
+        score = 0;
+        menu.SetActive(false);
     }
 }

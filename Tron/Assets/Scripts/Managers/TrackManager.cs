@@ -52,6 +52,7 @@ public class TrackManager : MonoBehaviour
             
             // keep track of the state of the track.
             isTrackEnable = false;
+            playerMan.DeTrack();
 
         } 
         else if (!Input.GetKey(trackKey) && !isTrackEnable)
@@ -60,14 +61,7 @@ public class TrackManager : MonoBehaviour
             InvokeRepeating("IncreaseTail", trackIncreaseRate, trackIncreaseRate);
             playerMov.resetSpeed();
             isTrackEnable = true;
-        }
-    }
-
-    void LateUpdate()
-    {
-        if (isTrackEnable)
-        {
-            playerMan.score +=2;
+            playerMan.AddTrack();
         }
     }
 

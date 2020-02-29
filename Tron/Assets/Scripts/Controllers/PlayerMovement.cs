@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Vector2 startPos = Vector2.up;
     [SerializeField] private int playerID;
     [SerializeField] private float moveRate = 0.1f;
+    [SerializeField] private GameObject menu;
 
     void Start()
     {
@@ -25,6 +26,12 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (playerID == 2){
             inputControlsPlayer2();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            menu.SetActive(true);
+            Time.timeScale = 0f;
         }
     }
 
