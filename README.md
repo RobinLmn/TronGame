@@ -1,8 +1,9 @@
 # TronGame - by Robin Leman
 
-# DownLoad
+# Download
 
-As this project is a Work In Progress, no builds are available for now.
+Beta Build [NOT FINAL VERSION]
+https://robinlmn.itch.io/tron
 
 # Producer
 
