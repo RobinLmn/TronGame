@@ -8,7 +8,7 @@ public class Collectables : AbstractInteractable
     [SerializeField] private PlayerManager playerMan;
      
     void ActiveItem(){
-        playerMan.increaseScore(100);
+        playerMan.AddBonus();
     }
 
     void OnTriggerEnter(Collider other)
@@ -27,6 +27,7 @@ public class Collectables : AbstractInteractable
     }
 
     void Start(){
+        isInstantiate = false;
         InvokeRepeating("Spawn", 4f, 4f);
     }
 
