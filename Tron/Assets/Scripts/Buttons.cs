@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class Buttons : MonoBehaviour
 {
-    public void Play()
+
+    
+    public void Local()
     {
        SceneManager.LoadScene(1);
     }
@@ -13,5 +15,10 @@ public class Buttons : MonoBehaviour
     public void Credits()
     {
         SceneManager.LoadScene(2);
+    }
+
+    public void Play()
+    {
+
     }
 }

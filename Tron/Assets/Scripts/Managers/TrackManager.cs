@@ -18,10 +18,12 @@ public class TrackManager : MonoBehaviour
     List<Transform> track = new List<Transform>();
 
     private bool isTrackEnable = true;
-    private KeyCode trackKey;
 
     [SerializeField] private PlayerMovement playerMov;
     [SerializeField] private PlayerManager playerMan;
+    [SerializeField] private InputManager inputManager;
+
+    private KeyCode trackKey;
 
     // Start is called before the first frame update
     void Start()
@@ -30,10 +32,10 @@ public class TrackManager : MonoBehaviour
         InvokeRepeating("IncreaseTail", trackIncreaseRate, trackIncreaseRate);
 
         if (playerID == 2){
-            trackKey = KeyCode.Q;
+            trackKey = inputManager.players[1].track;
         }
         else if (playerID == 1){
-            trackKey = KeyCode.RightShift;
+            trackKey = inputManager.players[0].track;
         }
     }
 

@@ -12,27 +12,43 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveRate = 0.1f;
     [SerializeField] private GameObject menu;
 
+    
+    [SerializeField] private InputManager inputManager;
+
+        private KeyCode right;
+        private KeyCode left; 
+        private KeyCode up;
+        private KeyCode down;
+        private KeyCode pause;
+    
+    private InputManager.PlayerInput player;
+
     void Start()
     {
         dir = startPos;
         // Call Move() every 300ms
         InvokeRepeating("Move", moveRate, moveRate);
+
+        if (playerID == 1){
+            player = inputManager.players[0];
+        }
+        else if (playerID == 2){
+            player = inputManager.players[1];
+        }
+
     }
 
     void Update()
     {
-        if (playerID == 1){
-            inputControlsPlayer1();
-        }
-        else if (playerID == 2){
-            inputControlsPlayer2();
-        }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(player.pause))
         {
             menu.SetActive(true);
             Time.timeScale = 0f;
         }
+
+        inputControlsPlayer();
+
     }
 
     void Move()
@@ -40,27 +56,15 @@ public class PlayerMovement : MonoBehaviour
         transform.Translate(dir);
     }
 
-    void inputControlsPlayer1(){
+    void inputControlsPlayer(){
         // Check Input, and prevent player for going back into previous direction
-        if (Input.GetKey(KeyCode.RightArrow) && dir != (-Vector2.right) )
+        if (Input.GetKey(player.right) && dir != (-Vector2.right) )
             dir = Vector2.right;
-        else if (Input.GetKey(KeyCode.DownArrow) && dir != (Vector2.up) )
+        else if (Input.GetKey(player.down) && dir != (Vector2.up) )
             dir = -Vector2.up; 
-        else if (Input.GetKey(KeyCode.LeftArrow) && dir != (Vector2.right))
+        else if (Input.GetKey(player.left) && dir != (Vector2.right))
             dir = -Vector2.right;
-        else if (Input.GetKey(KeyCode.UpArrow) && dir != (-Vector2.up))
-            dir = Vector2.up;
-    }
-
-    void inputControlsPlayer2(){
-        // Check Input, and prevent player for going back into previous direction
-        if (Input.GetKey(KeyCode.D) && dir != (-Vector2.right) )
-            dir = Vector2.right;
-        else if (Input.GetKey(KeyCode.S) && dir != (Vector2.up) )
-            dir = -Vector2.up; 
-        else if (Input.GetKey(KeyCode.A) && dir != (Vector2.right))
-            dir = -Vector2.right;
-        else if (Input.GetKey(KeyCode.W) && dir != (-Vector2.up))
+        else if (Input.GetKey(player.up) && dir != (-Vector2.up))
             dir = Vector2.up;
     }
 
@@ -76,5 +80,10 @@ public class PlayerMovement : MonoBehaviour
         CancelInvoke("Move");
         moveRate = 0.1f;
         InvokeRepeating("Move", moveRate, moveRate);
+    }
+
+    public Vector3 getDirection()
+    {
+        return dir;
     }
 }
