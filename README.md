@@ -2,7 +2,7 @@
 
 # Download
 
-Beta Build [NOT FINAL VERSION]
+Beta Build
 https://robinlmn.itch.io/tron
 
 # Producer
